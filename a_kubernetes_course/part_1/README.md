@@ -112,4 +112,4 @@ To install Minikube just checkout this [link](https://kubernetes.io/docs/tasks/t
 
 ## Conclusion
 
-We have come to the end of this part. I hope you have now seen the big picture of where K8s comes in in the DevOps chain and what cool things it can do. Lets meet and start deploying some [workloads](https://workloads.part).
+We have come to the end of this part. I hope you have now seen the big picture of where K8s comes in in the DevOps chain and what cool things it can do. Lets meet and start deploying some [workloads](https://workloads.part). 🚀 🚀 🚀 🚀
