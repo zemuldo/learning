@@ -46,7 +46,7 @@ The master runs certain processes that manipulate the other nodes. These process
 
 The workers run the workloads or applications represented in the cluster state. The container images for running your workloads are stored in a container registry like [gcr.io](http://gcr.io) and [docker.io](docker.io). The containers are run in an internal network and exposed to the external networks using load balancers.
 
-![](k8s_architecture.png)
+![](kubernetes_architecture.png)
 
 As you can see, the master node is accessible via the Kubernetes REST API, CLI tools or the Dashboard which still uses the REST API and nodes run containers that are started and stopped by the master and exposed out of the internal network via some load balancer.
 
