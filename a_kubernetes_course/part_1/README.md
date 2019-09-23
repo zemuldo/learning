@@ -23,7 +23,7 @@ During this series, we will study Kubernetes covering the following Topics:
 
 ## Let's get started!
 
-[Kubernetes](https://kubernetes.io/) popularly written as k8s is an [open-source](https://en.wikipedia.org/wiki/Open-source_software) [container](https://en.wikipedia.org/wiki/Operating-system-level_virtualization) [orchestration](https://en.wikipedia.org/wiki/Orchestration_(computing)) system for automating [application](https://en.wikipedia.org/wiki/Application_software) deployment, scaling, and management using containers. Kubernetes was originally developed by Google and later open-sourced with the first release in 2014 and is at the time of writing this article managed by [Cloud Native Computing Foundation](https://en.wikipedia.org/wiki/Cloud_Native_Computing_Foundation). This course covers Kubernetes in nearly its entirety. After this course, you will understand Kubernetes and be able to deploy and manage containers with Kubernetes at any scale.
+[Kubernetes](https://kubernetes.io/) popularly written as *k8s* is an [open-source](https://en.wikipedia.org/wiki/Open-source_software) [container](https://en.wikipedia.org/wiki/Operating-system-level_virtualization) [orchestration](https://en.wikipedia.org/wiki/Orchestration_(computing)) system for automating [application](https://en.wikipedia.org/wiki/Application_software) deployment, scaling, and management using containers. Kubernetes was originally developed by Google and later open-sourced with the first release in 2014 and is at the time of writing this article managed by [Cloud Native Computing Foundation](https://en.wikipedia.org/wiki/Cloud_Native_Computing_Foundation). This course covers Kubernetes in nearly its entirety. After this course, you will understand Kubernetes and be able to deploy and manage containers with Kubernetes at any scale.
 
 ## History of Kubernetes.
 
@@ -78,7 +78,7 @@ When your application requires real-time deployment automatically using CI/CD, K
 2. Distributed workloads.
 Kubernetes is very useful when you want to run distributed tasks on different containers as you manage the containers together.
 3. Self-healing and Scaling services.
-K8s is also perfect when your application requires auto-scaling and self-healing as Kubernetes will keep check of containers health and load. When the load hits the threshold, Kubernetes will add nodes to server your load. It will also keep track of container status and kill and replace containers with errors with no downtime.
+K8s is also perfect when your application requires auto-scaling and self-healing as Kubernetes will keep check of containers health and load. When the load hits the threshold, Kubernetes will add nodes to server your load. It will also keep track of container status and kill and replace containers with errors with no downtime. b.bb. . 
 4. Hybrid and Multicloud applications.
 There are reasons why you may run your app in a multi-cloud mode in which case Kubernetes can run clusters in the different cloud for you with so much easy management.
 5. Serverless Applications.
@@ -92,3 +92,13 @@ As we have already understood Kubernetes and how it works internally, now we wil
 
 
 ### Minikube and Kubectl.
+
+*Minikube* is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a Virtual Machine (VM) on your laptop for users looking to try out Kubernetes or develop with it day-to-day. This is because running a Kubernetes cluster on local environment is resource consuming and has alot of setup and configuration overhead that i better done on a staging or production environment. Both Kubernetes and Minikube expose the tools needed to interact with a cluster. It also supports almost all the Kubernetes [features](https://kubernetes.io/docs/setup/learning-environment/minikube/#minikube-features) that we may want to learn. Anything that is not supported on Minikube we will learn on the cloud managed services and on the Kubernetes cluster that we will create.
+
+To install Minikube just checkout this [link](https://kubernetes.io/docs/tasks/tools/install-minikube/). If the link is broken, browser to Kubernetes official docs.
+
+*Kubectl* is a command- line utility available to us for interacting with a Kubernetes cluster while doing deploying applications, monitoring etc. We will see this in action in the next part of this series. 
+
+## Conclusion
+
+We have come to the end of this part. I hope you have now seen the big picture of where K8s comes in in the DevOps chain and what cool things it can do. Lets meet and start deploying some [workloads](https://workloads.part).
