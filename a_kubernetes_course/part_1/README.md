@@ -40,7 +40,7 @@ Before [containers](https://www.docker.com/resources/what-container) became a th
 
 Kubernetes is written in [Go-lang](https://golang.org/), a statically typed, [compiled](https://en.wikipedia.org/wiki/Compiled_language) programming language designed also at [Google](https://en.wikipedia.org/wiki/Google). Let's have a look inside Kubernetes.
 
-A setup of Kubernetes consists of a cluster made up of a master node and worker nodes that work together to run your workflows/tasks/applications and manage the state of your cluster while communicating over a network managed by Kubernetes. The master manages the state of the cluster while the nodes run your applications in containers. The master node and worker nodes can be VMs or even actual servers.
+A setup of Kubernetes consists of a cluster made up of a master node and worker nodes that work together to run your workflows/tasks/applications and manage the state of your cluster while communicating over a network managed by Kubernetes. This also includes a few addons that are used for intercoms, management and logs. The master manages the state of the cluster while the nodes run your applications in containers. The master node and worker nodes can be VMs or even actual servers.
 
 The master runs certain processes that manipulate the other nodes. These processes provide the API for interacting with the cluster state, watching and changing cluster state and scheduling and keeping track of resource requirements, status and policies for running each workload.
 
@@ -49,15 +49,26 @@ The workers run the workloads or applications represented in the cluster state. 
 ![](k8s_architecture.png)
 
 As you can see, the master node is accessible via the Kubernetes REST API, CLI tools or the Dashboard which still uses the REST API and nodes run containers that are started and stopped by the master and exposed out of the internal network via some load balancer.
+
 While the master node runs 4 primary services:
+
 - [Kube-apiserver](https://kubernetes.io/docs/admin/kube-apiserver/) - a service that validates and configures data for the API objects which include pods, services, replication controllers, and others. The API Server exposes REST operations and provides the frontend to the cluster's shared state through which all other components interact.
 - [Kube-controller-manager](https://kubernetes.io/docs/admin/kube-controller-manager/) - a daemon that embeds the core control loops shipped with Kubernetes.
 - [Kube-scheduler](https://kubernetes.io/docs/admin/kube-scheduler/) - a policy-rich, topology-aware, workload-specific function that significantly impacts availability, performance, and capacity.
 - [etcd ](https://etcd.io/docs) - a Consistent and highly-available key-value store used as Kubernetes' backing store for all cluster data.
+- Container Runtime - This is the software that runs containers that are managed by kubernetes. The most popular you you may guess is Docker.
 
 Each non-master node runs two services:
+
 - [Kubelet ](https://kubernetes.io/docs/admin/kubelet/)- which communicates with the Kubernetes Master.
 - [Kube-proxy](https://kubernetes.io/docs/admin/kube-proxy/) - a network proxy which reflects Kubernetes networking services on each node.
+
+And the setup usually includes addons like:
+
+- DNS - This is a DNS server that provides DNS functions to the services in a cluster and all containers started by kubernetes includes this DNS server as part of their DNS search options by default.
+- [Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) - A cluster also provisions a web ui for management and troubleshooting of the cluster applications and its children.
+- [Container Resource Monitoring](https://kubernetes.io/docs/tasks/debug-application-cluster/resource-usage-monitoring/) - Kubernetes also provides container resource monitoring addons by recording generic time-series metrics about containers in a central database, and provides a UI for browsing that data.
+- [Cluster-level Logging](https://kubernetes.io/docs/concepts/overview/components/#cluster-level-logging)- This is  mechanism responsible for saving container logs to a central log store with search/browsing interface.
 
 ## Why use Kubernetes?
 
