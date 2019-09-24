@@ -102,13 +102,58 @@ You split your code into components that run separately in different Kubernetes 
 As we have already understood Kubernetes and how it works internally, now we will look at Kubernetes components that it exposes to us to make a cluster work. I have found learning by doing to be the best way of learning so moving forward, we will actually start using Kubenetes and interacting with it.
 
 
-### Minikube and Kubectl.
+### Minikube, Kubectl
 
 *Minikube* is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a Virtual Machine (VM) on your laptop for users looking to try out Kubernetes or develop with it day-to-day. This is because running a Kubernetes cluster on local environment is resource consuming and has alot of setup and configuration overhead that i better done on a staging or production environment. Both Kubernetes and Minikube expose the tools needed to interact with a cluster. It also supports almost all the Kubernetes [features](https://kubernetes.io/docs/setup/learning-environment/minikube/#minikube-features) that we may want to learn. Anything that is not supported on Minikube we will learn on the cloud managed services and on the Kubernetes cluster that we will create.
 
 To install Minikube just checkout this [link](https://kubernetes.io/docs/tasks/tools/install-minikube/). If the link is broken, browser to Kubernetes official docs.
 
-*Kubectl* is a command- line utility available to us for interacting with a Kubernetes cluster while doing deploying applications, monitoring etc. We will see this in action in the next part of this series. 
+*Kubectl* is a command- line utility available to us for interacting with a Kubernetes API while doing deploying applications, monitoring etc. Kubectl basically manipulates the objects that represent the state of the cluster. We will see this in action in the next part of this series. 
+
+## Kubernetes Objects
+
+Now we understand the inner workings of kubernetes, lets look at the entities that represent the state of the cluster. *[Kubernetes Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)* are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of your cluster and its these objects that we manipulate to change the cluster. Specifically, they can describe properties of workloads, services among other object types. Lets look at the significant of these properties that we will be using moving forward.
+
+### Object Spec and Status
+
+*Spec* - This property represents the characteristics of the object as we desire them.
+*Status* - This property describes the actual state of the object, and is supplied and updated by the Kubernetes system
+For example, a Kubernetes Deployment is an object that can represent an application running on your cluster. When you create the Deployment, you might set the Deployment spec to specify that you want three replicas of the application to be running. The Kubernetes system reads the Deployment spec and starts three instances of your desired application–updating the status to match your spec. If any of those instances should fail (a status change), the Kubernetes system responds to the difference between spec and status by making a correction–in this case, starting a replacement instance
+
+When using Kubectl command line utility, we mostly provide the object representation on a *.yaml* file. Kubectl converts the .yaml JSON when calling Kubernetes API. Lets see an example of a .yaml file.
+
+```yaml
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+```
+Don't worry about what the above .yaml file will create within kubernetes as we will talk about them until you start dreaming about them.
+
+While creating a k8s object representation,. there are some required fields that must be specified and these include:
+- apiVersion - Which version of the Kubernetes API you’re using to create this object
+- kind - What kind of object you want to create
+- metadata - Data that helps uniquely identify the object, including a name string, UID, and optional namespace
+- spec - The precise format of the object spec is different for every Kubernetes object, and contains nested fields specific to that object.  For example, the spec format for a Pod can be found [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#podspec-v1-core), and the spec format for a Deployment can be found [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#deploymentspec-v1-apps).
+  
+Lets now look at ways to manage the objects while inside a cluster.
+
+### Kubernetes Object Management
 
 ## Conclusion
 
