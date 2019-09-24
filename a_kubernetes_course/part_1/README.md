@@ -1,5 +1,7 @@
 # Part 1
 
+![](intro.png)
+
 Used in this series are [Kubernetes](https://kubernetes.io) version 1.15 and [Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/) 1.2.0. The information here comes from several resources mainly [Kubernetes official docs](https://kubernetes.io/docs) and [Google Kubernetes engine docs](https://cloud.google.com/kubernetes-engine/docs/). We will also use [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine), [Amazon Elastic Kubernetes Service (EKS)](https://aws.amazon.com/eks/) and [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-in/services/kubernetes-service/) as the main managed services for Kubernetes we want to understand at the end of the course.
 
 I will attach several links in this series for your further reading and curiosity but the content here also has enough to get you going just fine.
