@@ -1,4 +1,4 @@
-![](intro.png)
+![](../intro.png)
 # Part 1
 
 ## History of Kubernetes.
