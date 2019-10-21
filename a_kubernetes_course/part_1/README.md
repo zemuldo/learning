@@ -32,14 +32,14 @@ While the master node runs 4 primary services:
 - [Kube-controller-manager](https://kubernetes.io/docs/admin/kube-controller-manager/) - a daemon that embeds the core control loops shipped with Kubernetes.
 - [Kube-scheduler](https://kubernetes.io/docs/admin/kube-scheduler/) - a policy-rich, topology-aware, workload-specific function that significantly impacts availability, performance, and capacity.
 - [etcd ](https://etcd.io/docs) - a Consistent and highly-available key-value store used as Kubernetes' backing store for all cluster data.
-- Container Runtime - This is the software that runs containers that are managed by kubernetes. The most popular you you may guess is Docker.
+- Container Runtime - This is the software that runs containers that are managed by kubernetes. The most popular as you may guess is `Docker`.
 
 Each non-master node runs two services:
 
 - [Kubelet ](https://kubernetes.io/docs/admin/kubelet/)- which communicates with the Kubernetes Master.
 - [Kube-proxy](https://kubernetes.io/docs/admin/kube-proxy/) - a network proxy which reflects Kubernetes networking services on each node.
 
-And the setup usually includes addons like:
+And the cluster setup usually includes addons like:
 
 - DNS - This is a DNS server that provides DNS functions to the services in a cluster and all containers started by kubernetes includes this DNS server as part of their DNS search options by default.
 - [Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) - A cluster also provisions a web ui for management and troubleshooting of the cluster applications and its children.
@@ -88,13 +88,13 @@ To install Minikube just checkout this [link](https://kubernetes.io/docs/tasks/t
 
 ## Kubernetes Objects
 
-Now we understand the inner workings of kubernetes, lets look at the entities that represent the state of the cluster. *[Kubernetes Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)* are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of your cluster and its these objects that we manipulate to change the cluster. Specifically, they can describe properties of workloads, services among other object types. Lets look at the significant of these properties that we will be using moving forward.
+Now lets look at the entities that represent a state of the cluster. *[Kubernetes Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)* are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of your cluster and its these objects that we manipulate to change the cluster. Specifically, they can describe properties of workloads, services among other object types. Lets look at the significant of these properties that we will be using moving forward.
 
 ### Object Spec and Status
 
 *Spec* - This property represents the characteristics of the object as we desire them.
 *Status* - This property describes the actual state of the object, and is supplied and updated by the Kubernetes system
-For example, a Kubernetes Deployment is an object that can represent an application running on your cluster. When you create the Deployment, you might set the Deployment spec to specify that you want three replicas of the application to be running. The Kubernetes system reads the Deployment spec and starts three instances of your desired application–updating the status to match your spec. If any of those instances should fail (a status change), the Kubernetes system responds to the difference between spec and status by making a correction–in this case, starting a replacement instance
+For example, a `Kubernetes Deployment` is an object that can represent an application running on your cluster. When you create the `Deployment`, you might set the Deployment spec to specify that you want three `replicas` of the application to be running. The Kubernetes system reads the `Deployment spec` and starts three instances of your desired application–updating the status to match your spec. If any of those instances should fail (a status change), the Kubernetes system responds to the difference between spec and status by making a correction–in this case, starting a replacement instance
 
 When using Kubectl command line utility, we mostly provide the object representation on a *.yaml* file. Kubectl converts the .yaml JSON when calling Kubernetes API. Lets see an example of a .yaml file.
 
@@ -119,17 +119,27 @@ spec:
         ports:
         - containerPort: 80
 ```
-Don't worry about what the above .yaml file will create within kubernetes as we will talk about them until you start dreaming about them.
+Don't worry about what the above `.yaml` or what `Deployments` or `Replicas` are as we will talk about them until you start dreaming about them.
 
 While creating a k8s object representation,. there are some required fields that must be specified and these include:
-- apiVersion - Which version of the Kubernetes API you’re using to create this object
-- kind - What kind of object you want to create
-- metadata - Data that helps uniquely identify the object, including a name string, UID, and optional namespace
-- spec - The precise format of the object spec is different for every Kubernetes object, and contains nested fields specific to that object.  For example, the spec format for a Pod can be found [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#podspec-v1-core), and the spec format for a Deployment can be found [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#deploymentspec-v1-apps).
+- `apiVersion` - Which version of the Kubernetes API you’re using to create this object
+- `kind` - What kind of object you want to create
+- `metadata` - Data that helps uniquely identify the object, including a name string, UID, and optional namespace
+- `spec` - The precise format of the object spec is different for every Kubernetes object, and contains nested fields specific to that object.  For example, the spec format for a Pod can be found [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#podspec-v1-core), and the spec format for a Deployment can be found [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#deploymentspec-v1-apps).
   
 Lets now look at ways to manage the objects while inside a cluster.
 
 ### Kubernetes Object Management
+
+As we have seen above, when managing or changing the state of a cluster, we use can use the dashboard, kubectl commandline utility or the REST API directly to apply change or delete objects. 
+For example, the to apply the above deployment example, we can use:
+```
+kubectl create -f our_deployment.yaml
+
+```
+
+You can read more about object management [here](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/)
+And I recommend you read more on this as this will speedup your learning.
 
 ## Conclusion
 
